@@ -1,34 +1,8 @@
-import { useState, useEffect } from "react";
-import apiClient from "../services/api-client";
 import { Text } from "@chakra-ui/react";
-import { AxiosError } from "axios";
-
-interface Game {
-  id: number;
-  name: string;
-}
-
-interface FetchGameResponse {
-  count: number;
-  results: Game[];
-}
+import useGames from "../hooks/useGames";
 
 const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const getAllGames = async () => {
-      try {
-        const response = await apiClient.get<FetchGameResponse>("/games");
-        setGames(response.data.results);
-      } catch (err) {
-        setError((err as AxiosError).message);
-      }
-    };
-    getAllGames();
-  }, []);
-
+  const { games, error } = useGames();
   return (
     <div>
       {error && <Text>{error}</Text>}
