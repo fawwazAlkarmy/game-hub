@@ -7,20 +7,20 @@ export interface Genre {
   image_background: string;
 }
 
-export interface GenresResults {
+export interface Genres {
   count: number;
   results: Genre[];
   next: string;
   previous: string;
 }
 
-const apiClient = new APIClient<GenresResults>("/genres");
+const apiClient = new APIClient<Genres>("/genres");
 
 const useGenres = () => {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery<Genres, Error>({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
-    //staleTime: 10 * 1000, // 10 seconds
+    staleTime: 10 * 1000, // 10 seconds
   });
   return {
     data,
