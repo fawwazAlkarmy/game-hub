@@ -1,6 +1,6 @@
 # Game Hub
 
-Game Hub is a clone of the Rawg website, built using Vite, React, TypeScript, React-Query, react-router-dom, and Zustand.
+Game Hub is a clone of the Rawg website, built using Vite, React, TypeScript, React-Query.
 
 # Getting Started
 
